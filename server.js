@@ -25,9 +25,6 @@ app.use(
   })
 );
 
-app.options("*", cors());
-
-
 
 connectDB();
 
@@ -45,7 +42,7 @@ app.post("/api/ai/generate-explanation", protect, generateConceptExplanation);
 
 
 //Serve uploads folder
-app.use("/uploads", express.static(path.join(__dirname, "uploads"), {}));
+// app.use("/uploads", express.static(path.join(__dirname, "uploads"), {}));
 
 //Start server
 const PORT = process.env.PORT || 5000;
