@@ -15,7 +15,7 @@ const app = express();
 //Middleware to handle cors
 app.use(
     cors({
-        origin: "*",
+        origin: "https://ai-learning-assistant-frontend-liard.vercel.app/",
         methods: ["GET", "POST", "PUT", "DELETE"],
         allowedHeaders: ["Content-Type", "Authorization"],
     })
