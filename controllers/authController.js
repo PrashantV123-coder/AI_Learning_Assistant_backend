@@ -33,7 +33,12 @@ const registerUser = async(req, res) => {
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(password, salt);
 
-        const profileImageUrl = `${req.protocol}://${req.get("host")}/uploads/${req.file.filename}`;
+
+        const result = await uploadToCloudinary(req.file.buffer);
+
+        const profileImageUrl = result.secure_url;
+        
+
         //Create new user
         const user = await User.create({
             name,
@@ -55,7 +60,7 @@ const registerUser = async(req, res) => {
             success: false,
             message: "Server error", error: error.message});
     }
-};
+}; 
 
 // @desc    Login User
 // @route   POST /api/auth/login
