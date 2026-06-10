@@ -1,6 +1,7 @@
 const User = require("../models/User");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const uploadToCloudinary = require("../utils/uploadToCloudinary");
 
 //Generate JWT Token
 const generateToken = (userId) => {
