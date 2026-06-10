@@ -37,7 +37,7 @@ const registerUser = async(req, res) => {
         const result = await uploadToCloudinary(req.file.buffer);
 
         const profileImageUrl = result.secure_url;
-        
+
 
         //Create new user
         const user = await User.create({
@@ -60,7 +60,7 @@ const registerUser = async(req, res) => {
             success: false,
             message: "Server error", error: error.message});
     }
-}; 
+};
 
 // @desc    Login User
 // @route   POST /api/auth/login
