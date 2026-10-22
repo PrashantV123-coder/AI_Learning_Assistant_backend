@@ -13,17 +13,25 @@ const { generateInterviewQuestions, generateConceptExplanation } = require("./co
 const app = express();
 
 //Middleware to handle cors
+const allowedOrigins = [
+	"https://ai-learning-assistant-frontend-7uis-aruv5ehqn.vercel.app",
+	"https://ai-learning-assistant.vercel.app",
+	"http://localhost:5173",
+]
+
 app.use(
-  cors({
-    origin: [
-      "http://localhost:5173",
-      "https://ai-learning-assistant-frontend-7uis.vercel.app",
-    ],
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    allowedHeaders: ["Content-Type", "Authorization"],
-    credentials: true,
-  })
-);
+	cors({
+		origin: function (origin, callback) {
+			if (!origin || allowedOrigins.includes(origin)) {
+				callback(null, true)
+			} else {
+				callback(new Error("Not allowed by CORS"))
+			}
+		},
+		methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+		allowedHeaders: ["Content-Type", "Authorization"],
+	}),
+)
 
 
 connectDB();
